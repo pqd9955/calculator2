@@ -1,3 +1,12 @@
+let currentNumber = '';
+let previousNumber = '';
+let operation = null;
+let result = null;
+
+function updateDisplay(value) {
+  document.getElementById('display').value = value;
+}
+
 function handleClick(value) {
   if (!isNaN(value)) {
     currentNumber += value;
@@ -31,8 +40,8 @@ function handleClick(value) {
 }
 
 function calculate() {
-  let num1 = result;
-  let num2 = Number(currentNumber);
+  let num1 = parseFloat(previousNumber);
+  let num2 = parseFloat(currentNumber);
   switch (operation) {
     case '+':
       result = num1 + num2;
@@ -49,6 +58,14 @@ function calculate() {
   }
   updateDisplay(result);
   operation = null;
-  currentNumber = '';
+  previousNumber = '';
+  currentNumber = result.toString();
 }
 
+function clearDisplay() {
+  currentNumber = '';
+  previousNumber = '';
+  operation = null;
+  result = null;
+  updateDisplay('0');
+}
